@@ -4,7 +4,7 @@ package kb.common;
  * */
 public interface DBProperties {
 	public static final String DRIVER_NAME ="oracle.jdbc.driver.OracleDriver";
-	String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	String URL="jdbc:oracle:thin:@localhost:1521:xe";
 	String USER_ID="scott";
 	String USER_PASS="TIGER";
 }

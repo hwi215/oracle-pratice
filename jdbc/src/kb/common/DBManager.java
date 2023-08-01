@@ -17,7 +17,9 @@ public class DBManager {
 	static {
 		try {
 			Class.forName(DBProperties.DRIVER_NAME);
+			System.out.println("db 성공");
 		} catch (ClassNotFoundException e) {
+			System.out.println("db 실패");
 			e.printStackTrace(); // 오류메시지 출력
 		}
 	}
@@ -52,4 +54,5 @@ public class DBManager {
 		}
 		releaseConnection(con, st);
 	}
+
 }
