@@ -114,6 +114,8 @@ public class BoardController {
 		
 	}
 
+
+
 	/**
 	 * 부모글에 해당하는 댓글정보 가져오기
 	 * */
