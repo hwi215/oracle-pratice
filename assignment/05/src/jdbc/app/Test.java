@@ -39,7 +39,7 @@ public class Test {
 	static void insert() {
 		
 		AccountDto accountDto = new AccountDto();
-		accountDto.setUserSeq(80);
+		accountDto.setAccountSeq(80);
 		accountDto.setAccountNumber("00800808008008");
 		accountDto.setBalance(8000);
 		accountDto.setUserSeq(333);

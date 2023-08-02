@@ -6,7 +6,18 @@ public class UserDto {
 	private String email;
 	private String phone;
 	private boolean isSleep;
-	
+
+
+	public UserDto(int userSeq, String name, String email, String phone, boolean isSleep) {
+		this.userSeq = userSeq;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.isSleep = isSleep;
+	}
+
+	public UserDto(){};
+
 	public int getUserSeq() {
 		return userSeq;
 	}
@@ -32,9 +43,7 @@ public class UserDto {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public boolean isSleep() {
-		return isSleep;
-	}
+
 	public void setSleep(boolean isSleep) {
 		this.isSleep = isSleep;
 	}
@@ -43,5 +52,9 @@ public class UserDto {
 	public String toString() {
 		return "UserDto [userSeq=" + userSeq + ", name=" + name + ", email=" + email
 				+ ", phone=" + phone + ", isSleep=" + isSleep + "]";
+	}
+
+	public boolean isSleep() {
+		return this.isSleep;
 	}
 }

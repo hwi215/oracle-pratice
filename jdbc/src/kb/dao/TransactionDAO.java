@@ -20,7 +20,7 @@ public class TransactionDAO {
 		try {
 			con = DBManager.getConnection();
 			
-			con.setAutoCommit(false);//자동커밋해지!!!
+			con.setAutoCommit(false);//자동커밋해지!!!****중요!!!!!
 
 			//1. 출금을 한다. - update
 			int result = this.withDraw(con, outputAccount, money);
@@ -28,7 +28,7 @@ public class TransactionDAO {
 			
 			//2.  1이 정상이면 입금을 한다. - update
 			result=this.deposit(con, inputAccount, money);
-			if(result==0) throw new SQLException("입금계좌번호 오류로 계좌이체 실패했습니다.^^");
+			if(result==0) throw new SQLException("입금계좌번호 오류로 계좌이체 실패했습니다.^^"); // 여기서 예외발생시 이미 입금은 된 상태니까, 롤백해야함!!
 			
 			//3. 2가 정상이면 입금계좌의 잔액을 조회한다. - select
 			if( this.isCheckBalance(con, inputAccount) )
@@ -68,7 +68,7 @@ public class TransactionDAO {
 		   result = ps.executeUpdate();
 		   
 		}finally {
-			DBManager.releaseConnection(null, ps);
+			DBManager.releaseConnection(null, ps); // connection은 닫으면 안됨!!! -> 나중에 다 끝나고 main에서 닫아야 함 !!
 		}
 		
 		return result;
@@ -129,15 +129,15 @@ public class TransactionDAO {
 		System.out.println("--1. 출금계좌 오류----");
 		dao.transfer("A02", "A05",200);//입금, 출금, 금액
 		
-		//System.out.println("--2. 입금계좌 오류----");
-		//dao.transfer("A04", "A01",200);//입금, 출금, 금액
+		System.out.println("--2. 입금계좌 오류----");
+		dao.transfer("A04", "A01",200);//입금, 출금, 금액
 		
 		
-		//System.out.println("--3. 입금계좌의 총액 1000원 이상인경우----");
-		//dao.transfer("A02", "A01",700);//입금, 출금, 금액
+		System.out.println("--3. 입금계좌의 총액 1000원 이상인경우----");
+		dao.transfer("A02", "A01",700);//입금, 출금, 금액
 		
-//		System.out.println("--4. 성공----------");
-//		dao.transfer("A02", "A01",100);//입금, 출금, 금액
+		System.out.println("--4. 성공----------");
+		dao.transfer("A02", "A01",100);//입금, 출금, 금액
 	}
 }
 

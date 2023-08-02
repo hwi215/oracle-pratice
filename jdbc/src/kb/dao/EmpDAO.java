@@ -16,6 +16,8 @@ public class EmpDAO {
 	 * SELECT EMPNO, ENAME, JOB, SAL, HIREDATE FROM EMP
 	 *
 	 * @return*/
+
+	public static List<EmpDTO> list = new ArrayList<>();
 	public List<EmpDTO> selectAll() throws SQLException {
 		// 로드 연결 실행 닫기
 		Connection conn = null;
@@ -23,7 +25,7 @@ public class EmpDAO {
 		ResultSet rs = null;
 		String sql = "SELECT EMPNO, ENAME, JOB, SAL, HIREDATE FROM EMP";
 
-		List<EmpDTO> list = new ArrayList<>();
+
 		try{
 			conn = DBManager.getConnection(); // 연결
 			ps = conn.prepareStatement(sql);
